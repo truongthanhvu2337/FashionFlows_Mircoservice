@@ -1,0 +1,6 @@
+@PersonalScheduling.Services.Calendar.Api_HostAddress = http://localhost:5068
+
+GET {{PersonalScheduling.Services.Calendar.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
