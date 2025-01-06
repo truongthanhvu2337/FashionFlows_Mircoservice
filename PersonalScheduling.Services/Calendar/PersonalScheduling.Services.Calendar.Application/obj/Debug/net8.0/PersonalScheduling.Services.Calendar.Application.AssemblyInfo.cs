@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PersonalScheduling.Services.Calendar.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee1f8b15ccefdeb487fb0cecd7334c82245e61f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("PersonalScheduling.Services.Calendar.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PersonalScheduling.Services.Calendar.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

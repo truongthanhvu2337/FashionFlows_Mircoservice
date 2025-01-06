@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PersonalScheduling.BuildingBlock\PersonalScheduling.BuildingBlock.Infrastructure\PersonalScheduling.BuildingBlock.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

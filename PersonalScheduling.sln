@@ -29,6 +29,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalScheduling.StateMac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalScheduling.Services.User.Domain", "PersonalScheduling.Services\User\PersonalScheduling.Services.User.Domain\PersonalScheduling.Services.User.Domain.csproj", "{81B1968F-779C-4B86-8EA6-AD781D408318}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonalScheduling.ApiGateway", "PersonalScheduling.ApiGateway", "{94E969D0-720C-4FBE-B894-E51060BCC372}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalScheduling.ApiGateway", "PersonalScheduling.ApiGateway\PersonalScheduling.ApiGateway\PersonalScheduling.ApiGateway.csproj", "{430B93F9-D627-4018-B92A-443EA40976A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonalScheduling.BuildingBlock", "PersonalScheduling.BuildingBlock", "{2601B18B-35EC-448E-8CF1-CFBF7138C6E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalScheduling.BuildingBlock.Application", "PersonalScheduling.BuildingBlock\PersonalScheduling.BuildingBlock.Application\PersonalScheduling.BuildingBlock.Application.csproj", "{262E1CDB-4326-45BA-BC53-48A2545E6BDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalScheduling.BuildingBlock.Domain", "PersonalScheduling.BuildingBlock\PersonalScheduling.BuildingBlock.Shared\PersonalScheduling.BuildingBlock.Domain.csproj", "{39776D04-BD12-4B4E-AEE5-75FB6D11B33E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalScheduling.BuildingBlock.Infrastructure", "PersonalScheduling.BuildingBlock\PersonalScheduling.BuildingBlock.Infrastructure\PersonalScheduling.BuildingBlock.Infrastructure.csproj", "{1E680A6A-4FA7-4D95-93FD-B3A9C8EE98E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +83,22 @@ Global
 		{81B1968F-779C-4B86-8EA6-AD781D408318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81B1968F-779C-4B86-8EA6-AD781D408318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81B1968F-779C-4B86-8EA6-AD781D408318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430B93F9-D627-4018-B92A-443EA40976A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430B93F9-D627-4018-B92A-443EA40976A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430B93F9-D627-4018-B92A-443EA40976A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430B93F9-D627-4018-B92A-443EA40976A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262E1CDB-4326-45BA-BC53-48A2545E6BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262E1CDB-4326-45BA-BC53-48A2545E6BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262E1CDB-4326-45BA-BC53-48A2545E6BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262E1CDB-4326-45BA-BC53-48A2545E6BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39776D04-BD12-4B4E-AEE5-75FB6D11B33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39776D04-BD12-4B4E-AEE5-75FB6D11B33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39776D04-BD12-4B4E-AEE5-75FB6D11B33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39776D04-BD12-4B4E-AEE5-75FB6D11B33E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E680A6A-4FA7-4D95-93FD-B3A9C8EE98E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E680A6A-4FA7-4D95-93FD-B3A9C8EE98E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E680A6A-4FA7-4D95-93FD-B3A9C8EE98E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E680A6A-4FA7-4D95-93FD-B3A9C8EE98E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +115,10 @@ Global
 		{3D5D5325-5C2F-43CB-806B-F1E0B912EE50} = {89C1DD6A-9E0E-4E49-B9C8-6089F84B3083}
 		{30356928-8AD0-4C5A-B715-807ABD9702C7} = {62C7E28D-AB2A-407D-85C7-CBE29D516AFA}
 		{81B1968F-779C-4B86-8EA6-AD781D408318} = {89C1DD6A-9E0E-4E49-B9C8-6089F84B3083}
+		{430B93F9-D627-4018-B92A-443EA40976A8} = {94E969D0-720C-4FBE-B894-E51060BCC372}
+		{262E1CDB-4326-45BA-BC53-48A2545E6BDC} = {2601B18B-35EC-448E-8CF1-CFBF7138C6E1}
+		{39776D04-BD12-4B4E-AEE5-75FB6D11B33E} = {2601B18B-35EC-448E-8CF1-CFBF7138C6E1}
+		{1E680A6A-4FA7-4D95-93FD-B3A9C8EE98E6} = {2601B18B-35EC-448E-8CF1-CFBF7138C6E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {871BA451-4ABA-4E1A-939C-AE13F130BCA7}
