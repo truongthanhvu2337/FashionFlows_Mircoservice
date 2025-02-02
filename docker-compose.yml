@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+     image: rabbitmq:3-management
+     container_name: rabbitmq
+     ports:
+      - "5672:5672"       
+      - "15672:15672"     
+     environment:
+      - RABBITMQ_DEFAULT_USER=sa
+      - RABBITMQ_DEFAULT_PASS=sa
+     volumes:
+      - ./.container/queue/data/:/var/lib/rabbitmq
+      - ./.container/queue/log/:/var/log/rabbitmq
+
+  fashionflows.statemachine.orchestration:
+    image: ${DOCKER_REGISTRY-}fashionflowsstatemachineorchestration
+    build:
+      context: .
+      dockerfile: FashionFlows.StateMachine/FashionFlows.StateMachine.Orchestration/Dockerfile
+
+
+  fashionflows.product.api:
+    image: ${DOCKER_REGISTRY-}fashionflowsproductapi
+    build:
+      context: .
+      dockerfile: FashionFlows.Services/Products/FashionFlows.Product.Api/Dockerfile
+
+
+  fashionflows.order.api:
+    image: ${DOCKER_REGISTRY-}fashionflowsorderapi
+    build:
+      context: .
+      dockerfile: FashionFlows.Services/Order/FashionFlows.Order.Api/Dockerfile
+

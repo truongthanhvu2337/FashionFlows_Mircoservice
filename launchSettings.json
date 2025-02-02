@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "personalscheduling.statemachine.orchestration": "StartDebugging",
+        "fashionflows.order.api": "StartDebugging",
+        "fashionflows.product.api": "StartDebugging",
+        "fashionflows.statemachine.orchestration": "StartDebugging"
+      }
+    }
+  }
+}

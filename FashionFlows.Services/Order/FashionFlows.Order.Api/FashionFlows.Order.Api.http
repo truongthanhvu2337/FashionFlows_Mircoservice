@@ -1,0 +1,6 @@
+@FashionFlows.Order.Api_HostAddress = http://localhost:5110
+
+GET {{FashionFlows.Order.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
