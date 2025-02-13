@@ -1,0 +1,6 @@
+@FashionFlows.Payment.Api_HostAddress = http://localhost:5001
+
+GET {{FashionFlows.Payment.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

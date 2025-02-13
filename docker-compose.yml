@@ -34,3 +34,10 @@ services:
       context: .
       dockerfile: FashionFlows.Services/Order/FashionFlows.Order.Api/Dockerfile
 
+
+  fashionflows.payment.api:
+    image: ${DOCKER_REGISTRY-}fashionflowspaymentapi
+    build:
+      context: .
+      dockerfile: FashionFlows.Services/Payment/FashionFlows.Payment.Api/FashionFlows.Payment.Api/Dockerfile
+
