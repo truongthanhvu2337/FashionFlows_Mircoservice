@@ -18,6 +18,7 @@ FashionFlows
 │   ├── 📂 Product
 ├── 📂 FashionFlows.StateMachine # Orchestration and workflow
 ├── 📄 docker-compose.yml # Docker setup for local dev
+```
 
 ## 🚀 Features
 
