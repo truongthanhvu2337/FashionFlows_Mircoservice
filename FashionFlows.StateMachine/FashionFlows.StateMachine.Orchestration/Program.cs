@@ -6,8 +6,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Sinks.Grafana.Loki;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .UseSerilog((hostContext, loggerConfig) =>
+    {
+        loggerConfig
+            .ReadFrom.Configuration(hostContext.Configuration)
+            .WriteTo.Console()
+            .WriteTo.GrafanaLoki("http://loki:3100");
+    })
     .ConfigureServices((hostContext, services) =>
     {
         services.AddMassTransit(cfg =>
@@ -44,7 +53,10 @@ IHost host = Host.CreateDefaultBuilder(args)
                     b.MigrationsAssembly(typeof(StateMachineDbContext).Assembly.FullName);
                 });
         });
-
+        services.AddLogging(loggingBuilder =>
+        {
+            loggingBuilder.AddSerilog();
+        });
 
     })
     .Build();

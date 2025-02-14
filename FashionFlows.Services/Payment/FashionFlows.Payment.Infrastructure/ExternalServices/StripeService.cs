@@ -56,12 +56,11 @@ internal class StripeService : IStripeService
     }
 
     //Process a Refund
-    public async Task<Refund> ProcessRefundAsync(string paymentIntentId, long amount)
+    public async Task<Refund> ProcessRefundAsync(string paymentIntentId)
     {
         var refundOptions = new RefundCreateOptions
         {
-            PaymentIntent = paymentIntentId,
-            Amount = amount
+            PaymentIntent = paymentIntentId
         };
 
         var refundService = new RefundService();

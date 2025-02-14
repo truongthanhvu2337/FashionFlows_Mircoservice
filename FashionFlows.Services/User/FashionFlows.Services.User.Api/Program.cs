@@ -1,9 +1,10 @@
+using FashionFlows.BuildingBlock.Application.Configuration;
 using FashionFlows.BuildingBlock.Infrastructure.GenericInstaller;
 using FashionFlows.Services.Account.Infrastructure.Installers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.ConfigureSerilog();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

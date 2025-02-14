@@ -1,4 +1,5 @@
 ﻿using FashionFlows.Payment.Application.UseCases.CheckOut;
+using FashionFlows.Payment.Application.UseCases.Refund;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -24,4 +25,12 @@ public class PaymentController : ControllerBase
         return result.StatusResponse != HttpStatusCode.OK ? StatusCode((int)result.StatusResponse, result) : Ok(result);
     }
 
+    [HttpPost("refund")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> refund([FromBody] RefundCommand command, CancellationToken cancellationToken = default)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return result.StatusResponse != HttpStatusCode.OK ? StatusCode((int)result.StatusResponse, result) : Ok(result);
+    }
 }

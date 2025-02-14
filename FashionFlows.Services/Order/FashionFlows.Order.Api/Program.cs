@@ -1,9 +1,11 @@
+using FashionFlows.BuildingBlock.Application.Configuration;
 using FashionFlows.BuildingBlock.Infrastructure.GenericInstaller;
 using FashionFlows.Order.Infrastructure.Installers;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.ConfigureSerilog();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -23,7 +25,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseSerilogRequestLogging();
 app.MapControllers();
 app.UseHttpsRedirection();
 
