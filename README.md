@@ -18,7 +18,7 @@ FashionFlows
 │── 📂 FashionFlows.StateMachine # Orchestration and workflow
 │── 📄 docker-compose.yml # Docker setup for local dev
 
- ## 🚀 Features
+## 🚀 Features
 
 ✅ **CQRS & MediatR** for clean separation of concerns  
 ✅ **Event-driven architecture** using messaging  
@@ -26,8 +26,9 @@ FashionFlows
 ✅ **Grafana Loki** for logging and monitoring  
 ✅ **Docker Compose** for easy local deployment  
 
-## ⛏ Tech Stack
-✅ **Backend**: .NET, MediatR, CQRS, AutoMapper
-✅ **Database**: Redis, Sql Server
-✅ **Message Broker** RabbitMQ
-✅ **Monitoring**: Grafana, Loki, Jeager
+## 🛠 Tech Stack
+
+✅ **Backend**: .NET, MediatR, CQRS, AutoMapper  
+✅ **Database**: Redis, SQL Server  
+✅ **Message Broker**: RabbitMQ  
+✅ **Monitoring**: Grafana, Loki, Jaeger  
