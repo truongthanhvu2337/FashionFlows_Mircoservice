@@ -29,6 +29,12 @@ FashionFlows
 ✅ **Redis** for distrubuted caching  
 ✅ **Docker Compose** for easy local deployment  
 
+## ⚒ Things still be working on
+
+Not implement **Outbox pattern** yet  
+**Distributed lock** still in progress  
+**Event-driven architecture** not implement properly  
+
 ## 🛠 Tech Stack
 
 ✅ **Backend**: .NET, MediatR, CQRS, AutoMapper  
