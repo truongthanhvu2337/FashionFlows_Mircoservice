@@ -25,8 +25,8 @@ FashionFlows
 ✅ **CQRS & MediatR** for clean separation of concerns  
 ✅ **Event-driven architecture** using messaging  
 ✅ **Stripe integration** for secure payments  
-✅ **Grafana Loki** and **Jeager** for distrubuted logging and tracing
-✅ **Redis** for distrubuted caching 
+✅ **Grafana Loki** and **Jeager** for distrubuted logging and tracing  
+✅ **Redis** for distrubuted caching  
 ✅ **Docker Compose** for easy local deployment  
 
 ## 🛠 Tech Stack
