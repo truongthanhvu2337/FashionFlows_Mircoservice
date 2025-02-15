@@ -19,6 +19,11 @@
 			<PrivateAssets></PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.1" />
+		<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.11.1" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.11.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.11.0-beta.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\FashionFlows.BuildingBlock.Application\FashionFlows.BuildingBlock.Application.csproj" />

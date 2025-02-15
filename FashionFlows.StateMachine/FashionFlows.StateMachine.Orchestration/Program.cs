@@ -1,4 +1,5 @@
-﻿using FashionFlows.StateMachine.Orchestration.Persistence;
+﻿using FashionFlows.BuildingBlock.Infrastructure.Tracing;
+using FashionFlows.StateMachine.Orchestration.Persistence;
 using FashionFlows.StateMachine.Orchestration.StateMachine;
 using FashionFlows.StateMachine.Orchestration.StateMachineInstance;
 using MassTransit;
@@ -57,6 +58,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         {
             loggingBuilder.AddSerilog();
         });
+        services.AddOpenTelemetryTracing(hostContext.Configuration);
 
     })
     .Build();

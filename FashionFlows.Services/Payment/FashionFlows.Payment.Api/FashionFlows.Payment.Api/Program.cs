@@ -1,6 +1,7 @@
 using FashionFlows.BuildingBlock.Application.Configuration;
 using FashionFlows.BuildingBlock.Application.Middleware;
 using FashionFlows.BuildingBlock.Infrastructure.GenericInstaller;
+using FashionFlows.BuildingBlock.Infrastructure.Tracing;
 using FashionFlows.Payment.Infrastructure.Installers;
 using Serilog;
 
@@ -17,7 +18,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "FashionFlows", Version = "v1" });
     c.EnableAnnotations();
 });
-
+builder.Services.AddOpenTelemetryTracing(builder.Configuration);
 
 builder.Services.InstallServicesInAssembly<IPaymentAssembly>(builder.Configuration);
 

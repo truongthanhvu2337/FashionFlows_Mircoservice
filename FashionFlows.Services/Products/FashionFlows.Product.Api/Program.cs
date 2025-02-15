@@ -1,5 +1,6 @@
 using FashionFlows.BuildingBlock.Application.Configuration;
 using FashionFlows.BuildingBlock.Infrastructure.GenericInstaller;
+using FashionFlows.BuildingBlock.Infrastructure.Tracing;
 using FashionFlows.Product.Infrastructure.Installers;
 using Serilog;
 
@@ -14,7 +15,7 @@ builder.Services.AddSwaggerGen(c =>
     c.EnableAnnotations();
 });
 
-
+builder.Services.AddOpenTelemetryTracing(builder.Configuration);
 builder.Services.InstallServicesInAssembly<IProductAssembly>(builder.Configuration);
 
 var app = builder.Build();
