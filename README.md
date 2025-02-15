@@ -1,6 +1,6 @@
 # FashionFlows Microservices Architecture
 
-FashionFlows is a microservices-based application designed for scalable e-commerce solutions. It follows **CQRS**, **MediatR**, and **Event-Driven Architecture**, integrating **Stripe** for payment, and **Grafana Loki** for observability.
+FashionFlows is a microservices-based application designed for scalable fashion shop solutions. It follows **CQRS**, **MediatR**, and **Event-Driven Architecture**, integrating **Stripe** for payment, and **Grafana Loki**, **Jeager** for observability.
 
 ## 📜 Project Structure
 
@@ -28,6 +28,12 @@ FashionFlows
 ✅ **Grafana Loki** and **Jeager** for distrubuted logging and tracing  
 ✅ **Redis** for distrubuted caching  
 ✅ **Docker Compose** for easy local deployment  
+
+## ⚒ Things still be working on
+
+Not implement **Outbox pattern** yet  
+**Distributed lock** still in progress  
+**Event-driven architecture** not implement properly  
 
 ## 🛠 Tech Stack
 
