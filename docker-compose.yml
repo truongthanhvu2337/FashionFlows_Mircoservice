@@ -1,6 +1,36 @@
 version: '3.4'
 
 services:
+  fashionflows.apigateway:
+    image: ${DOCKER_REGISTRY-}fashionflowsapigateway
+    build:
+      context: .
+      dockerfile: FashionFlows.ApiGateway/FashionFlows.ApiGateway/FashionFlows.ApiGateway/Dockerfile
+
+  fashionflows.order.api:
+    image: ${DOCKER_REGISTRY-}fashionflowsorderapi
+    build:
+      context: .
+      dockerfile: FashionFlows.Services/Order/FashionFlows.Order.Api/Dockerfile
+    
+  fashionflows.product.api:
+    image: ${DOCKER_REGISTRY-}fashionflowsproductapi
+    build:
+      context: .
+      dockerfile: FashionFlows.Services/Products/FashionFlows.Product.Api/Dockerfile
+
+  fashionflows.payment.api:
+    image: ${DOCKER_REGISTRY-}fashionflowspaymentapi
+    build:
+      context: .
+      dockerfile: FashionFlows.Services/Payment/FashionFlows.Payment.Api/FashionFlows.Payment.Api/Dockerfile
+
+  fashionflows.statemachine.orchestration:
+    image: ${DOCKER_REGISTRY-}fashionflowsstatemachineorchestration
+    build:
+      context: .
+      dockerfile: FashionFlows.StateMachine/FashionFlows.StateMachine.Orchestration/Dockerfile
+
   rabbitmq:
      image: rabbitmq:3-management
      container_name: rabbitmq
@@ -13,33 +43,17 @@ services:
      volumes:
       - ./.container/queue/data/:/var/lib/rabbitmq
       - ./.container/queue/log/:/var/log/rabbitmq
-
-  fashionflows.statemachine.orchestration:
-    image: ${DOCKER_REGISTRY-}fashionflowsstatemachineorchestration
-    build:
-      context: .
-      dockerfile: FashionFlows.StateMachine/FashionFlows.StateMachine.Orchestration/Dockerfile
-
-
-  fashionflows.product.api:
-    image: ${DOCKER_REGISTRY-}fashionflowsproductapi
-    build:
-      context: .
-      dockerfile: FashionFlows.Services/Products/FashionFlows.Product.Api/Dockerfile
-
-
-  fashionflows.order.api:
-    image: ${DOCKER_REGISTRY-}fashionflowsorderapi
-    build:
-      context: .
-      dockerfile: FashionFlows.Services/Order/FashionFlows.Order.Api/Dockerfile
-
-
-  fashionflows.payment.api:
-    image: ${DOCKER_REGISTRY-}fashionflowspaymentapi
-    build:
-      context: .
-      dockerfile: FashionFlows.Services/Payment/FashionFlows.Payment.Api/FashionFlows.Payment.Api/Dockerfile
+     depends_on:
+      -  fashionflows.order.api
+      -  fashionflows.product.api
+      -  fashionflows.payment.api
+      -  fashionflows.statemachine.orchestration
+ 
+  consul:
+    image: hashicorp/consul:latest
+    container_name: consul
+    ports:
+      - "8500:8500"
 
   loki:
     image: grafana/loki:latest
@@ -69,6 +83,11 @@ services:
       - "4318:4318"
       - "16686:16686"
 
+
+
 volumes:
   loki-data:
   grafana-storage:
+  
+
+

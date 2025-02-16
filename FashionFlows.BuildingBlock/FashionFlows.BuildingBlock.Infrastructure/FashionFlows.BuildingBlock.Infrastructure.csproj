@@ -24,6 +24,8 @@
 		<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.0" />
 		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.11.0" />
 		<PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.11.0-beta.1" />
+		<PackageReference Include="Steeltoe.Discovery.Consul" Version="3.2.8" />
+		<PackageReference Include="Steeltoe.Extensions.Configuration.Abstractions" Version="3.2.8" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\FashionFlows.BuildingBlock.Application\FashionFlows.BuildingBlock.Application.csproj" />

@@ -8,7 +8,8 @@
         "fashionflows.order.api": "StartDebugging",
         "fashionflows.product.api": "StartDebugging",
         "fashionflows.statemachine.orchestration": "StartDebugging",
-        "fashionflows.payment.api": "StartDebugging"
+        "fashionflows.payment.api": "StartDebugging",
+        "fashionflows.apigateway": "StartDebugging"
       }
     }
   }

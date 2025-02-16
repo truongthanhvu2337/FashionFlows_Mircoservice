@@ -1,0 +1,6 @@
+@FashionFlows.ApiGateway_HostAddress = http://localhost:5233
+
+GET {{FashionFlows.ApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
