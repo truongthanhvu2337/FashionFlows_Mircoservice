@@ -31,6 +31,7 @@ FashionFlows
 
 ## ⚒ Things still be working on
 
+**Service Discovery/Registry** has been implemented but it seems some bugs appeared that need to be fixed.
 Not implement **Outbox pattern** yet  
 **Distributed lock** still in progress  
 **Event-driven architecture** not implement properly  
