@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 var ocelotConfig = new ConfigurationBuilder().AddJsonFile("ocelot.json", false, true).Build();
-builder.Services.AddOcelot(ocelotConfig)
-        .AddConsul();
+builder.Services.AddOcelot(ocelotConfig);
 
 var app = builder.Build();
 

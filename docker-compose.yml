@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}fashionflowsapigateway
     build:
       context: .
-      dockerfile: FashionFlows.ApiGateway/FashionFlows.ApiGateway/FashionFlows.ApiGateway/Dockerfile
+      dockerfile: FashionFlows.ApiGateway/Dockerfile
 
   fashionflows.order.api:
     image: ${DOCKER_REGISTRY-}fashionflowsorderapi

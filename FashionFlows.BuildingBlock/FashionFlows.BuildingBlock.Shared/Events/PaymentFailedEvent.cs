@@ -2,9 +2,8 @@
 
 namespace FashionFlows.BuildingBlock.Domain.Events;
 
-public class OrderFailedEvent : IOrderFailedEvent
+public class PaymentFailedEvent : IPaymentFailedEvent
 {
-    public Guid OrderId { get; set; }
-    public Guid UserId { get; set; }
+    public Guid CorrelationId {  get; set; }
     public List<OrderItemEvent> OrderItemList { get; set; }
 }

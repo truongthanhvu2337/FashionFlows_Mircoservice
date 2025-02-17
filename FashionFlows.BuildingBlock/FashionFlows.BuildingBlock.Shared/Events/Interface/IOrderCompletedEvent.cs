@@ -1,7 +1,7 @@
 ﻿namespace FashionFlows.BuildingBlock.Domain.Events.Interface;
 
-public interface IOrderFailedEvent
+public interface IOrderCompletedEvent
 {
-    public Guid OrderId { get; set; }
     public Guid UserId { get; set; }
+    public Guid OrderId { get; set; }
 }

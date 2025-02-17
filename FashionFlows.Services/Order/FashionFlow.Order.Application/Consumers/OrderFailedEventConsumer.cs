@@ -4,7 +4,7 @@ using FashionFlows.Order.Domain.Constant;
 using FashionFlows.Order.Domain.Repositories;
 using MassTransit;
 
-namespace FashionFlows.Order.Infrastructure.Consumers;
+namespace FashionFlows.Order.Application.Consumers;
 
 public class OrderFailedEventConsumer : IConsumer<IOrderFailedEvent>
 {

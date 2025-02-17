@@ -10,21 +10,21 @@ public class MassTransitInstaller : IInstaller
     public void InstallerServices(IServiceCollection services, IConfiguration configuration)
     {
 
-        //services.AddMassTransit(x =>
-        //{
-        //    x.SetKebabCaseEndpointNameFormatter();
+        services.AddMassTransit(x =>
+        {
+            x.SetKebabCaseEndpointNameFormatter();
 
-        //    x.AddConsumers(typeof(IPaymentAssembly).Assembly);
-        //    x.UsingRabbitMq((context, cfg) =>
-        //    {
+            x.AddConsumers(typeof(IPaymentAssembly).Assembly);
+            x.UsingRabbitMq((context, cfg) =>
+            {
 
-        //        cfg.Host("rabbitmq", "/", h =>
-        //        {
-        //            h.Username("sa");
-        //            h.Password("sa");
-        //        });
-        //        cfg.ConfigureEndpoints(context);
-        //    });
-        //});
+                cfg.Host("rabbitmq", "/", h =>
+                {
+                    h.Username("sa");
+                    h.Password("sa");
+                });
+                cfg.ConfigureEndpoints(context);
+            });
+        });
     }
 }
