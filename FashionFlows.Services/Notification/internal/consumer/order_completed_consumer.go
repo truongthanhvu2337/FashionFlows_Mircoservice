@@ -12,11 +12,11 @@ import (
 	"github.com/streadway/amqp"
 )
 
-type OrderFailedConsume struct {
+type OrderCompletedConsumer struct {
 	repo *repository.NotificationRepository
 }
 
-func ConsumeOrderFailedEvent(repo *repository.NotificationRepository) {
+func ConsumeCompletedEvent(repo *repository.NotificationRepository) {
 	conn, ch := config.ConnectRabbitMQ()
 	defer conn.Close()
 	defer ch.Close()
@@ -27,7 +27,7 @@ func ConsumeOrderFailedEvent(repo *repository.NotificationRepository) {
 		log.Println(err)
 	}
 
-	err = ch.QueueBind(q.Name, "", "FashionFlows.BuildingBlock.Domain.Events:OrderFailedEvent", false, nil)
+	err = ch.QueueBind(q.Name, "", "FashionFlows.BuildingBlock.Domain.Events:OrderCompletedEvent", false, nil)
 	if err != nil {
 		log.Println(err)
 	}
@@ -37,28 +37,30 @@ func ConsumeOrderFailedEvent(repo *repository.NotificationRepository) {
 		log.Println(err)
 	}
 
-	consumer := OrderFailedConsume{repo: repo}
+	consumer := OrderCompletedConsumer{repo: repo}
 	for msg := range msgs {
-		consumer.handleOrderFailedEvent(msg)
+		consumer.handleOrderCompletedEvent(msg)
 	}
 }
 
-func (s *OrderFailedConsume) handleOrderFailedEvent(msg amqp.Delivery) {
+func (r* OrderCompletedConsumer) handleOrderCompletedEvent(msg amqp.Delivery){
 	var event events.OrderFailedEvent
-	
+
 	err := json.Unmarshal(msg.Body, &event)
 	if err != nil {
 		log.Print(err)
 		msg.Nack(false, true)
 		return
 	}
+
 	notification := model.Notification {
 		UserID: event.UserID,
 		Message: "Order created failed",
 		IsRead: false,
 		CreatedAt: time.Now(),
 	}
-	error := s.repo.Create(&notification)
+
+	error := r.repo.Create(&notification)
 	if error != nil {
 		log.Print(err)
 	}

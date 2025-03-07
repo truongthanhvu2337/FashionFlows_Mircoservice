@@ -8,11 +8,7 @@ import (
 	"notificationservice/internal/server"
 	"notificationservice/internal/service"
 
-	_ "notificationservice/cmd/docs"
-
 	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func main() {
@@ -23,12 +19,15 @@ func main() {
 	notificationHandler := handler.NewNotificationHandler(notificationService)
 
 	go func() {
-		consumer.ConsumeOrderFailedEvent()
+		consumer.ConsumeOrderFailedEvent(notificationRepo)
+	}()
+
+	go func() {
+		consumer.ConsumeCompletedEvent(notificationRepo)
 	}()
 
 	router := gin.Default()
 	server.SetupRoutes(router, notificationHandler)
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	
 
 	router.Run(":8080")

@@ -52,13 +52,6 @@ func (h *NotificationHandler) GetNotificationByID(c *gin.Context) {
 	c.JSON(http.StatusOK, notification)
 }
 
-// GetBooks             godoc
-// @Summary      Get books array
-// @Description  Responds with the list of all books as JSON.
-// @Tags         books
-// @Produce      json
-// @Success      200  {array}  models.Notification
-// @Router       /api/vi/notification [get]
 func (h *NotificationHandler) GetAllNotifications(c *gin.Context) {
 	notifications, err := h.service.GetAllNotifications()
 	if err != nil {

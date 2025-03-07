@@ -6,7 +6,6 @@ import (
 	"github.com/streadway/amqp"
 )
 
-// Kết nối RabbitMQ
 func ConnectRabbitMQ() (*amqp.Connection, *amqp.Channel) {
 	conn, err := amqp.Dial("amqp://sa:sa@rabbitmq:5672/")
 	if err != nil {
