@@ -1,4 +1,5 @@
 ﻿using FashionFlows.BuildingBlock.Application.Abstraction;
+using FashionFlows.Payment.Application.Consumer;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ public class MassTransitInstaller : IInstaller
             x.SetKebabCaseEndpointNameFormatter();
 
             x.AddConsumers(typeof(IPaymentAssembly).Assembly);
+            x.AddConsumer<CompletePaymentMessageConsumer>();
             x.UsingRabbitMq((context, cfg) =>
             {
 

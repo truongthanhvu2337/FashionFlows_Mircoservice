@@ -1,6 +1,8 @@
-﻿using FashionFlows.BuildingBlock.Domain.Model.Response;
+﻿using FashionFlows.BuildingBlock.Domain.Events;
+using FashionFlows.BuildingBlock.Domain.Model.Response;
 using FashionFlows.BuildingBlock.Domain.UnitOfWork;
 using FashionFlows.Payment.Domain.Repository;
+using MassTransit;
 using MediatR;
 using System.Net;
 
@@ -11,12 +13,14 @@ public class UpdateStatusCommandHandler : IRequestHandler<UpdateStatusCommand, A
     private readonly IPaymentRepository _paymentRepository;
     private readonly ITransactionRepository _transactionRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IBus _bus;
 
-    public UpdateStatusCommandHandler(IPaymentRepository paymentRepository, ITransactionRepository transactionRepository, IUnitOfWork unitOfWork)
+    public UpdateStatusCommandHandler(IPaymentRepository paymentRepository, ITransactionRepository transactionRepository, IUnitOfWork unitOfWork, IBus bus)
     {
         _paymentRepository = paymentRepository;
         _transactionRepository = transactionRepository;
         _unitOfWork = unitOfWork;
+        _bus = bus;
     }
 
     public async Task<APIResponse> Handle(UpdateStatusCommand request, CancellationToken cancellationToken)
@@ -31,7 +35,6 @@ public class UpdateStatusCommandHandler : IRequestHandler<UpdateStatusCommand, A
             };
         }
 
-        // Update payment status
         payment.Status = request.Status;
         payment.StripePaymentIntentId = request.StripePaymentIntentId;
         await _paymentRepository.Update(payment);
@@ -46,7 +49,13 @@ public class UpdateStatusCommandHandler : IRequestHandler<UpdateStatusCommand, A
         }
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-
+        if (request.Status == "Expired")
+        {
+            await _bus.Publish(new PaymentFailedEvent
+            {
+                
+            });
+        }
         return new APIResponse
         {
             Data = null,

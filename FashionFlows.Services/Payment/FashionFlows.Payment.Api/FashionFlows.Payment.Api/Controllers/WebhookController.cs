@@ -1,13 +1,9 @@
 ﻿using FashionFlows.Payment.Application.UseCases.UpdateStatus;
-using FashionFlows.Payment.Infrastructure.ExternalServices.Setting;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Stripe;
 using Stripe.Checkout;
-using static MassTransit.ValidationResultExtensions;
 using System.Net;
-using FashionFlows.Payment.Domain.Entities;
 
 [Route("api/v1/webhooks/stripe")]
 [ApiController]
@@ -54,7 +50,7 @@ public class StripeWebhookController : ControllerBase
 
             string paymentIntentId = session.PaymentIntentId;
 
-            string status = stripeEvent.Type;
+            string status = "Expired";
 
             var updateCommand = new UpdateStatusCommand(paymentId, paymentIntentId, status);
             var result = await _mediator.Send(updateCommand, cancellationToken);

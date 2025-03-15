@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"notificationservice/config"
 	"notificationservice/internal/consumer"
 	"notificationservice/internal/handler"
@@ -13,17 +14,23 @@ import (
 
 func main() {
 	config.InitDB()
+	conn, ch, err := config.ConnectRabbitMQ()
+	if err != nil {
+		log.Printf("Could not connect to RabbitMQ: %v", err)
+	}
+	defer conn.Close()
+	defer ch.Close()
 
 	notificationRepo := repository.NewNotificationRepository(config.DB)
 	notificationService := service.NewNotificationService(notificationRepo)
 	notificationHandler := handler.NewNotificationHandler(notificationService)
 
 	go func() {
-		consumer.ConsumeOrderFailedEvent(notificationRepo)
+		consumer.ConsumeOrderFailedEvent(ch, notificationRepo)
 	}()
 
 	go func() {
-		consumer.ConsumeCompletedEvent(notificationRepo)
+		consumer.ConsumeCompletedEvent(ch, notificationRepo)
 	}()
 
 	router := gin.Default()

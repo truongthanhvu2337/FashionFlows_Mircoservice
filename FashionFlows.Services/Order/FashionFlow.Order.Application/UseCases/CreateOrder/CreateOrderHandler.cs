@@ -1,5 +1,4 @@
-﻿using FashionFlows.BuildingBlock.Domain.Events;
-using FashionFlows.BuildingBlock.Domain.Messages;
+﻿using FashionFlows.BuildingBlock.Domain.Messages;
 using FashionFlows.BuildingBlock.Domain.Messages.Interface;
 using FashionFlows.BuildingBlock.Domain.Model.Response;
 using FashionFlows.BuildingBlock.Domain.UnitOfWork;
@@ -47,12 +46,14 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, APIRespons
         var newOrderCreated = new CreateOrderMessage
         {
             OrderId = order.Id,
+            UserId = order.UserId,
             TotalPrice = order.OrderItems.Sum(a => a.UnitPrice * a.Quantity),
-            OrderItemList = order.OrderItems.Select(item => new OrderItemEvent
+            OrderItemList = order.OrderItems.Select(item => new FashionFlows.BuildingBlock.Domain.Model.OrderItem
             {
                 Quantity = item.Quantity,
                 ProductId = item.ProductId,
                 Size = item.Size,
+                UnitPrice = item.UnitPrice
             }).ToList()
         };
 

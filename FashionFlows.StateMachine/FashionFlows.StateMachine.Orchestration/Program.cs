@@ -1,4 +1,5 @@
-﻿using FashionFlows.BuildingBlock.Infrastructure.Tracing;
+﻿using FashionFlows.BuildingBlock.Domain.Events;
+using FashionFlows.BuildingBlock.Infrastructure.Tracing;
 using FashionFlows.StateMachine.Orchestration.Persistence;
 using FashionFlows.StateMachine.Orchestration.StateMachine;
 using FashionFlows.StateMachine.Orchestration.StateMachineInstance;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RabbitMQ.Client;
 using Serilog;
 using Serilog.Sinks.Grafana.Loki;
 
@@ -39,6 +41,16 @@ IHost host = Host.CreateDefaultBuilder(args)
                     h.Password("sa");
                 });
 
+                cfg.Publish<OrderCompletedEvent>(x =>
+                {
+                    x.ExchangeType = ExchangeType.Fanout; 
+                });
+
+                cfg.Publish<OrderFailedEvent>(x =>
+                {
+                    x.ExchangeType = ExchangeType.Fanout;
+                });
+
 
                 //cfg.UseInMemoryOutbox();
                 cfg.ConfigureEndpoints(context);
@@ -62,5 +74,11 @@ IHost host = Host.CreateDefaultBuilder(args)
 
     })
     .Build();
+
+using var scope = host.Services.CreateScope();
+var bus = scope.ServiceProvider.GetRequiredService<IBus>();
+
+await bus.Publish(new OrderCompletedEvent { OrderId = Guid.NewGuid() });
+await bus.Publish(new OrderFailedEvent { OrderId = Guid.NewGuid() });
 
 host.Run();

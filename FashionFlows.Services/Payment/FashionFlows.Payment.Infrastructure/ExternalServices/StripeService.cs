@@ -1,4 +1,5 @@
-﻿using FashionFlows.Payment.Application.Abstractions;
+﻿using FashionFlows.BuildingBlock.Domain.Model;
+using FashionFlows.Payment.Application.Abstractions;
 using FashionFlows.Payment.Infrastructure.ExternalServices.Setting;
 using Microsoft.Extensions.Options;
 using Stripe;
@@ -18,34 +19,28 @@ internal class StripeService : IStripeService
     }
 
     //Simplified Checkout Session
-    public async Task<Session> CheckoutAsync(long amount, string productName, int quantity, Guid paymentId)
+    public async Task<Session> CheckoutAsync(long amount, List<OrderItem> orderItems, Guid paymentId)
     {
         var options = new SessionCreateOptions
         {
             PaymentMethodTypes = new List<string> { "card" },
-            LineItems = new List<SessionLineItemOptions>
+            LineItems = orderItems.Select(item => new SessionLineItemOptions
             {
-                new SessionLineItemOptions
+                PriceData = new SessionLineItemPriceDataOptions
                 {
-                    PriceData = new SessionLineItemPriceDataOptions
+                    Currency = "usd",
+                    UnitAmount = (long)item.UnitPrice,
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
-                        Currency = "usd",
-                        UnitAmount = amount,
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            
-                            Name = productName
-
-                        }
-                    },
-                    Quantity = quantity
+                        Name = item.ProductId.ToString() 
+                    }
                 },
-
-            },
+                Quantity = item.Quantity 
+            }).ToList(),
             Metadata = new Dictionary<string, string>
-                            {
-                                { "fashionflows_pmid", paymentId.ToString() }
-                            },
+        {
+            { "fashionflows_pmid", paymentId.ToString() }
+        },
             Mode = "payment",
             SuccessUrl = "https://www.youtube.com/",
             CancelUrl = "https://www.youtube.com/watch?v=WO5l2Siz8uU"
@@ -54,6 +49,7 @@ internal class StripeService : IStripeService
         var service = new SessionService();
         return await service.CreateAsync(options);
     }
+
 
     //Process a Refund
     public async Task<Refund> ProcessRefundAsync(string paymentIntentId)

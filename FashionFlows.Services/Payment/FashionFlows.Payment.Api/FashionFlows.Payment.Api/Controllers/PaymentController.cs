@@ -16,14 +16,14 @@ public class PaymentController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("check-out")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Create([FromBody] CheckOutCommand command, CancellationToken cancellationToken = default)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return result.StatusResponse != HttpStatusCode.OK ? StatusCode((int)result.StatusResponse, result) : Ok(result);
-    }
+    //[HttpPost("check-out")]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+    //public async Task<IActionResult> Create([FromBody] CheckOutCommand command, CancellationToken cancellationToken = default)
+    //{
+    //    var result = await _mediator.Send(command, cancellationToken);
+    //    return result.StatusResponse != HttpStatusCode.OK ? StatusCode((int)result.StatusResponse, result) : Ok(result);
+    //}
 
     [HttpPost("refund")]
     [ProducesResponseType(StatusCodes.Status200OK)]

@@ -8,6 +8,7 @@ public class Transaction
     public decimal Amount { get; set; }
     public string Status { get; set; } = "Pending"; 
     public string? StripeTransactionId { get; set; }
+    public string? url { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public Payment Payment { get; set; }

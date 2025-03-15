@@ -51,10 +51,11 @@ public class OrderStateMachine : MassTransitStateMachine<OrderStateInstance>
         During(OrderCreated,
             When(StockReservedEvent)
                 .TransitionTo(StockReserved)
-                .Send(
+                .Publish(
                     context => new CompletePaymentMessage
                     {
                         CorrelationId = context.Saga.CorrelationId,
+                        OrderId = context.Saga.OrderId,
                         TotalPrice = context.Saga.TotalPrice,
                         UserId = context.Saga.UserId.ToString(),
                         OrderItemList = context.Message.OrderItemList

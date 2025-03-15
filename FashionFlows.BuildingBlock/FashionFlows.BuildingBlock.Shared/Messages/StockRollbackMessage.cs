@@ -1,6 +1,7 @@
 ﻿using FashionFlows.BuildingBlock.Domain.Events;
+using FashionFlows.BuildingBlock.Domain.Model;
 
 public class StockRollbackMessage
 {
-    public List<OrderItemEvent> OrderItemList { get; set; }
+    public List<OrderItem> OrderItemList { get; set; }
 }
